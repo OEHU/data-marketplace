@@ -1,0 +1,27 @@
+dist: xenial
+language: node_js
+node_js:
+  - '11'
+
+before_install:
+  - npm install -g npm
+  - npm install -g codacy-coverage
+
+script:
+  # - ./scripts/install.sh # runs automatically with npm ci
+  - ./scripts/test.sh
+  - ./scripts/coverage.sh
+  - ./scripts/build.sh
+
+notifications:
+  email: false
+
+cache: npm
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: bash -ex ./scripts/deploy_on_k8s.sh
+    on:
+      tags: true
+      all_branches: true

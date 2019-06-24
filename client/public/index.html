@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta name="theme-color" content="#141414" />
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+        <title>Commons</title>
+
+        <meta
+            content="A marketplace to find and publish open data sets in the Ocean Network."
+            name="description"
+        />
+        <meta
+            content="https://commons.oceanprotocol.com/share.png"
+            name="image"
+        />
+        <link href="https://commons.oceanprotocol.com" rel="canonical" />
+
+        <meta content="https://commons.oceanprotocol.com" property="og:url" />
+        <meta content="Commons" property="og:title" />
+        <meta
+            content="A marketplace to find and publish open data sets in the Ocean Network."
+            property="og:description"
+        />
+        <meta
+            content="https://commons.oceanprotocol.com/share.png"
+            property="og:image"
+        />
+
+        <meta content="summary_large_image" name="twitter:card" />
+        <meta content="@oceanprotocol" name="twitter:creator" />
+        <meta content="Commons" name="twitter:title" />
+        <meta
+            content="A marketplace to find and publish open data sets in the Ocean Network."
+            name="twitter:description"
+        />
+        <meta
+            content="https://commons.oceanprotocol.com/share.png"
+            name="twitter:image"
+        />
+
+        <style>
+            .loader {
+                display: block;
+                position: relative;
+                margin-top: calc(50vh - 15px);
+            }
+
+            .loader:before {
+                content: '';
+                box-sizing: border-box;
+                position: absolute;
+                top: -80%;
+                left: 50%;
+                width: 20px;
+                height: 20px;
+                margin-top: -10px;
+                margin-left: -10px;
+                border-radius: 50%;
+                border: 2px solid #7b1173;
+                border-top-color: #e000cf;
+                animation: spinner 0.6s linear infinite;
+            }
+
+            @keyframes spinner {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"><span class="loader"></span></div>
+    </body>
+</html>
