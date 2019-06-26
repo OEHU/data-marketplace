@@ -1,48 +1,97 @@
-import React, { Component } from 'react'
-import Route from '../components/templates/Route'
+import React, { PureComponent, Component } from 'react'
 import Content from '../components/atoms/Content'
 import axios from 'axios'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import withTracker from '../hoc/withTracker'
+import Publish from './Publish/'
 
-export default class Login extends Component {
 
+interface LoginProps {
+    history: any[]
+}
+
+export default class Login extends PureComponent<LoginProps> {
+    
     public state = {
+        loggedIn: false,
         email: '',
         password: '', 
-        devices: []
+        devices: ['']
+    };
+
+    public validateForm(cb: any) {
+        const url = "https://api.oehu.org/account/login";
+        
+        const user = {
+            email: this.state.email, 
+            password: this.state.password
+        };
+
+        axios.post(url, user)
+            .then(
+                (res) => {
+                    console.log("post request", res);
+                     if (res.status == 200) {
+                        cb(null, res);
+                        console.log("post devices return", res.data.devices);
+                        
+                    } 
+                },
+                (err) => {
+                    console.log("Could not log in. Try again.", err);
+                    cb({message: "Could not log in. Please try again!"}, null);
+                });
+
+
     }
 
-    // checking if user inputted something
-    public validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 0;
-      }
-    
     public handleEmail = (event: { target: { value: any; }; }) => {
+        console.log("email state " + this.state.email);
         this.setState({
           email: event.target.value
         });
     }
 
     public handlePassword = (event: { target: { value: any; }; }) => {
-        this.setState({
-          password: event.target.value
-        });
+        console.log("password state " + this.state.password);
+        this.setState({  password: event.target.value   });
     } 
     
     public handleSubmit = (event: { preventDefault: () => void; }) => {
+        
         event.preventDefault();
+
+        this.validateForm((err: any, result: any) => {
+            if (err) {
+                alert(err.message);
+            } 
+            else {
+                this.setState ({ 
+                    loggedIn: true,
+                    devices: result.data.devices
+                });
+        
+                localStorage.setItem("email", JSON.stringify(this.state.email));
+                localStorage.setItem("devices", JSON.stringify(this.state.devices));
+            }
+        });
     }
 
     public render() {
-            return (
-                <form onSubmit={this.handleSubmit} className="form">
-                    Email: <br/>
-                    <input type = "text" name="email" onChange={this.handleEmail}></input> <br/>
-                    Password: <br/>
-                    <input type = "password" name="password" onChange={this.handlePassword}></input> <br/>
-                    <input type="submit" value="Submit"></input>
-                </form>
-                
-                );
+        if (this.state.loggedIn) {
+            this.props.history.push("/loggedIn");
+        }
+
+        return (
+            <form className="form" onSubmit = {this.handleSubmit}>
+                Email: <br/>
+                <input type = "text" name="email" onChange={this.handleEmail}></input> <br/>
+                Password: <br/>
+                <input type = "password" name="password" onChange={this.handlePassword}></input> <br/>
+                <input type="submit" value="Submit"></input> 
+            </form>
+            );
         }
 
 

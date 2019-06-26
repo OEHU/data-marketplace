@@ -22,6 +22,7 @@ const Routes = () => (
         <Route component={withTracker(Styleguide)} path="/styleguide" />
         <Route component={withTracker(About)} path="/about" />
         <Route component={withTracker(Login)} path="/publish" />
+        <Route component={withTracker(Publish)} path="/loggedIn" />
         <Route component={withTracker(Search)} path="/search" />
         <Route component={withTracker(Asset)} path="/asset/:did" />
         <Route component={withTracker(Faucet)} path="/faucet" />
