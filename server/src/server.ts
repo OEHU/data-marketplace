@@ -1,8 +1,9 @@
-import debug from 'debug'
+import debug from 'debug' 
 import express from 'express'
 import compression from 'compression'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
+import cors from 'cors'
 
 // routes
 import UrlCheckRouter from './routes/UrlCheckRouter'
@@ -14,6 +15,7 @@ import config from './config/config'
 const log = debug('server:index')
 
 const app = express()
+app.use(cors())
 
 function onListening(): void {
     log('Server thread started')

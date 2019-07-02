@@ -11,12 +11,11 @@
           "required": true,
           "help": "Enter a concise title. You will be able to enter a more thorough description in the next step."
         },
-        "files": {
-          "label": "Files",
-          "placeholder": "e.g. https://file.com/file.json",
+        "price": {
+          "label": "Price",
+          "help": "Enter an integer price in vodka (attoOCEAN) tokens.",
           "type": "text",
-          "required": true,
-          "help": "Provide one or multiple urls to your data set files."
+          "required": true
         }
       }
     },
@@ -26,8 +25,8 @@
       "fields": {
         "description": {
           "label": "Description",
-          "help": "Add a thorough description with as much detail as possible.",
-          "placeholder": "e.g. Shapes of 23 common desert plants.",
+          "help": "Include details about the location and number of occupants in the household.",
+          "placeholder": "e.g. 2 occupants. Rotterdam.",
           "type": "textarea",
           "required": true,
           "rows": 5
@@ -38,39 +37,7 @@
           "type": "select",
           "required": true,
           "options": [
-            "Image Recognition",
-            "Dataset Of Datasets",
-            "Language",
-            "Performing Arts",
-            "Visual Arts & Design",
-            "Philosophy",
-            "History",
-            "Theology",
-            "Anthropology & Archeology",
-            "Sociology",
-            "Psychology",
-            "Politics",
-            "Interdisciplinary",
-            "Economics & Finance",
-            "Demography",
-            "Biology",
-            "Chemistry",
-            "Physics & Energy",
-            "Earth & Climate",
-            "Space & Astronomy",
-            "Mathematics",
-            "Computer Technology",
-            "Engineering",
-            "Agriculture & Bio Engineering",
-            "Transportation",
-            "Urban Planning",
-            "Health & Medicine",
-            "Business & Management",
-            "Sports & Recreation",
-            "Communication & Journalism",
-            "Deep Learning",
-            "Law",
-            "Other"
+            "OEHU"
           ]
         },
         "dateCreated": {

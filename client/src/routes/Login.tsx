@@ -1,11 +1,10 @@
 import React, { PureComponent, Component } from 'react'
-import Content from '../components/atoms/Content'
 import axios from 'axios'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Redirect } from 'react-router-dom'
-import withTracker from '../hoc/withTracker'
-import Publish from './Publish/'
-
+import Form from './../components/atoms/Form/Form'
+// import { BrowserRouter as Router, Route } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
+// import withTracker from '../hoc/withTracker'
+// import Publish from './Publish/'
 
 interface LoginProps {
     history: any[]
@@ -72,25 +71,35 @@ export default class Login extends PureComponent<LoginProps> {
                     devices: result.data.devices
                 });
         
-                localStorage.setItem("email", JSON.stringify(this.state.email));
-                localStorage.setItem("devices", JSON.stringify(this.state.devices));
+                sessionStorage.setItem("email", this.state.email);
+                sessionStorage.setItem("devices", JSON.stringify(result.data.devices));
+                sessionStorage.setItem("loggedIn", "true");
+                console.log("session storage in login page", sessionStorage.getItem("devices"));
+                
+                this.props.history.push("/devices");
             }
         });
     }
 
+    public toggleLoggedIn() {
+        this.setState({
+            loggedIn: true
+        });
+    }
+
     public render() {
-        if (this.state.loggedIn) {
-            this.props.history.push("/loggedIn");
+        if (sessionStorage.getItem("loggedIn") == "true") {
+            this.toggleLoggedIn();
         }
 
         return (
-            <form className="form" onSubmit = {this.handleSubmit}>
+            <Form title="Login" onSubmit = {this.handleSubmit}>
                 Email: <br/>
                 <input type = "text" name="email" onChange={this.handleEmail}></input> <br/>
                 Password: <br/>
                 <input type = "password" name="password" onChange={this.handlePassword}></input> <br/>
                 <input type="submit" value="Submit"></input> 
-            </form>
+            </Form>
             );
         }
 

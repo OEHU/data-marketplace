@@ -44,7 +44,7 @@ export default class Publish extends Component<{}, PublishState> {
         dateCreated: new Date().toISOString(),
         description: '',
         files: [],
-        price: '0',
+        price: '',
         author: '',
         type: 'dataset' as AssetType,
         license: '',
@@ -58,7 +58,7 @@ export default class Publish extends Component<{}, PublishState> {
         publishingError: '',
         publishingStep: 0,
         validationStatus: {
-            1: { name: false, files: false, allFieldsValid: false },
+            1: { name: false, price: false, allFieldsValid: false },
             2: {
                 description: false,
                 categories: false,
@@ -114,7 +114,7 @@ export default class Publish extends Component<{}, PublishState> {
             dateCreated: new Date().toISOString(),
             description: '',
             files: [],
-            price: '0',
+            price: '',
             author: '',
             type: 'dataset' as AssetType,
             license: '',
@@ -169,7 +169,7 @@ export default class Publish extends Component<{}, PublishState> {
         //
         // Step 1
         //
-        if (validationStatus[1].name && validationStatus[1].files) {
+        if (validationStatus[1].name && validationStatus[1].price) {
             this.setState(prevState => ({
                 validationStatus: {
                     ...prevState.validationStatus,
@@ -249,6 +249,9 @@ export default class Publish extends Component<{}, PublishState> {
     private registerAsset = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
+        const deviceId = sessionStorage.getItem("currentDevice")
+        const deviceURL = "http://api.oehu.org/transactions?deviceId=" + deviceId
+
         ReactGA.event({ category: 'Publish', action: 'registerAsset-start' })
 
         this.setState({
@@ -258,14 +261,23 @@ export default class Publish extends Component<{}, PublishState> {
         })
 
         const { ocean } = this.context
+        console.log("OCEAN", ocean);
         const account = await ocean.accounts.list()
+        console.log("ACCOUNT", account);
 
         // remove `found` attribute from all File objects
         // in a new array
-        const files = this.state.files.map(
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            ({ found, ...keepAttrs }: { found: boolean }) => keepAttrs
-        )
+        // const files = this.state.files.map(
+        //     // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        //     ({ found, ...keepAttrs }: { found: boolean }) => keepAttrs
+        // )
+
+        const links = [];
+        links.push({
+            url: deviceURL,
+            name: "Oehu file",
+            type: "json"
+        });
 
         const newAsset = {
             // OEP-08 Attributes
@@ -280,12 +292,14 @@ export default class Publish extends Component<{}, PublishState> {
                 author: this.state.author,
                 license: this.state.license,
                 copyrightHolder: this.state.copyrightHolder,
-                files,
+                links: links,
                 price: this.state.price,
                 type: this.state.type,
-                categories: [this.state.categories]
+                categories: ['OEHU']
             })
         }
+ 
+        console.log("NEW ASSET", newAsset);
 
         try {
             const asset = await this.context.ocean.assets
