@@ -1,6 +1,10 @@
-import React, { PureComponent, Component } from 'react'
+import React, { PureComponent, Component, FormEvent, ChangeEvent  } from 'react'
 import axios from 'axios'
 import Form from './../components/atoms/Form/Form'
+import Input from './../components/atoms/Form/Input'
+import Button from './../components/atoms/Button'
+
+
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
 // import { Redirect } from 'react-router-dom'
 // import withTracker from '../hoc/withTracker'
@@ -45,16 +49,16 @@ export default class Login extends PureComponent<LoginProps> {
 
     }
 
-    public handleEmail = (event: { target: { value: any; }; }) => {
+    public handleEmail = (event: ChangeEvent<HTMLInputElement> | FormEvent<HTMLInputElement>) => {
         console.log("email state " + this.state.email);
         this.setState({
-          email: event.target.value
+          email: event.currentTarget.value
         });
     }
 
-    public handlePassword = (event: { target: { value: any; }; }) => {
+    public handlePassword = (event: ChangeEvent<HTMLInputElement> | FormEvent<HTMLInputElement>) => {
         console.log("password state " + this.state.password);
-        this.setState({  password: event.target.value   });
+        this.setState({  password: event.currentTarget.value   });
     } 
     
     public handleSubmit = (event: { preventDefault: () => void; }) => {
@@ -94,11 +98,9 @@ export default class Login extends PureComponent<LoginProps> {
 
         return (
             <Form title="Login" onSubmit = {this.handleSubmit}>
-                Email: <br/>
-                <input type = "text" name="email" onChange={this.handleEmail}></input> <br/>
-                Password: <br/>
-                <input type = "password" name="password" onChange={this.handlePassword}></input> <br/>
-                <input type="submit" value="Submit"></input> 
+                <Input type = "text" name="email" label="Email"onChange={this.handleEmail}></Input> <br/>
+                <Input type="password" name="password" label="Password" onChange={this.handlePassword}></Input> <br/>
+                <Button>Submit</Button> 
             </Form>
             );
         }

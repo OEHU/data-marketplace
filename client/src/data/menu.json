@@ -2,5 +2,17 @@
   {
     "title": "Publish",
     "link": "/publish"
+  },
+  {
+    "title": "History",
+    "link": "/history"
+  },
+  {
+    "title": "Faucet",
+    "link": "/faucet"
+  },
+  {
+    "title": "About",
+    "link": "/about"
   }
 ]

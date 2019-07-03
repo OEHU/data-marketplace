@@ -1,9 +1,12 @@
-import React, { PureComponent, Component } from 'react'
+import React, { PureComponent, FormEvent, ChangeEvent } from 'react'
 import Content from '../components/atoms/Content'
 import { Ocean } from '@oceanprotocol/squid'
 import axios from 'axios'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
+import Form from './../components/atoms/Form/Form'
+import Input from './../components/atoms/Form/Input'
+import Button from './../components/atoms/Button'
 
 interface DeviceProps {
     history: any[],
@@ -46,23 +49,14 @@ export default class Devices extends PureComponent<DeviceProps, DeviceState> {
 
     }
 
-    public passDevice = (event: { target: { value: any; }; }) => {
+    public passDevice = (event: FormEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLTextAreaElement>) => {
         this.setState({
-            checkedDevice: event.target.value
+            checkedDevice: event.currentTarget.value
         });
     }
 
     public submitDevice = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        // const ocean = this.context;
-        // console.log("OCEAN: ", ocean);
-
-
-        // TODO: Get a device URL by device ID to filter data by device ID
-        // TODO: Use that as the asset URL to send to ocean
-        // TODO: Once posted, return to list of assets where we can see the new asset
-        //       listed
-
         sessionStorage.setItem("currentDevice", this.state.checkedDevice);
         this.props.history.push("/loggedIn");
     }
@@ -73,17 +67,11 @@ export default class Devices extends PureComponent<DeviceProps, DeviceState> {
         const devices = this.state.devices || [];
 
         return (
-            <form onSubmit={this.submitDevice}>
-                {devices.map(device => (
-                    <div className="radio" key={device}>
-                        <label>
-                            <input type="radio" value={device} onChange={this.passDevice} />
-                            {device}
-                        </label>
-                    </div>
-                ))}
-                <input type="submit" value="Submit"></input>
-            </form>
+            <Form onSubmit={this.submitDevice}>
+                <Input type="radio" name="devices" label="Devices" required={true} options={devices} onChange={this.passDevice}></Input> 
+                {/* disabled={!device} */}
+                <Button primary>Submit</Button> 
+            </Form>
         );
     }
 

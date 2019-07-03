@@ -275,7 +275,7 @@ export default class Publish extends Component<{}, PublishState> {
         const links = [];
         links.push({
             url: deviceURL,
-            name: "Oehu file",
+            name: "" + deviceId,
             type: "json"
         });
 

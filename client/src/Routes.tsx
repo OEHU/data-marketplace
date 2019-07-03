@@ -21,13 +21,13 @@ const Routes = () => (
     <Switch>
         <Route component={withTracker(Home)} exact path="/" />
         <Route component={withTracker(Styleguide)} path="/styleguide" />
-        {/* <Route component={withTracker(About)} path="/about" /> */}
+        <Route component={withTracker(About)} path="/about" />
         <Route component={withTracker(Login)} path="/publish" />
         <Route component={withTracker(Publish)} path="/loggedIn" />
         <Route component={withTracker(Search)} path="/search" />
         <Route component={withTracker(Asset)} path="/asset/:did" />
-        {/* <Route component={withTracker(Faucet)} path="/faucet" /> */}
-        {/* <Route component={withTracker(History)} path="/history" /> */}
+        <Route component={withTracker(Faucet)} path="/faucet" /> 
+        <Route component={withTracker(History)} path="/history" />
         {/* <Route component={withTracker(Channels)} exact path="/channels" /> */}
         {/* <Route component={withTracker(Channel)} path="/channels/:channel" /> */}
         <Route component={withTracker(Devices)} path="/devices" />
