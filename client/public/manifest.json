@@ -1,19 +1,19 @@
 {
-  "short_name": "Commons",
-  "name": "Commons Marketplace",
+  "short_name": "OEHU",
+  "name": "OEHU Marketplace",
   "icons": [
     {
-      "src": "icons/favicon_512.png",
+      "src": "icons/oehu.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "icons/favicon_256.png",
+      "src": "icons/oehu.png",
       "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "icons/favicon_128.png",
+      "src": "icons/oehu.png",
       "sizes": "128x128",
       "type": "image/png"
     }

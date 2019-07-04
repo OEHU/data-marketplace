@@ -100,7 +100,7 @@ export default class Login extends PureComponent<LoginProps> {
             <Form title="Login" onSubmit = {this.handleSubmit}>
                 <Input type = "text" name="email" label="Email"onChange={this.handleEmail}></Input> <br/>
                 <Input type="password" name="password" label="Password" onChange={this.handlePassword}></Input> <br/>
-                <Button>Submit</Button> 
+                <Button primary>Submit</Button> 
             </Form>
             );
         }

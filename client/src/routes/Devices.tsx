@@ -62,14 +62,11 @@ export default class Devices extends PureComponent<DeviceProps, DeviceState> {
     }
 
     public render() {
-        console.log("devices in render", this.state.devices);
-
         const devices = this.state.devices || [];
 
         return (
             <Form onSubmit={this.submitDevice}>
-                <Input type="radio" name="devices" label="Devices" required={true} options={devices} onChange={this.passDevice}></Input> 
-                {/* disabled={!device} */}
+                <Input type="radio" name="devices" label="Select the device with the data that you want to publish" required={true} options={devices} onChange={this.passDevice}></Input> 
                 <Button primary>Submit</Button> 
             </Form>
         );

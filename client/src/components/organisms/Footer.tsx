@@ -12,7 +12,7 @@ const Footer = () => (
         <aside className={styles.stats}>
             <Content wide>
                 <p>
-                    Online since March 2019.
+                    Built by the BlockLab intern team at iXperience Lisbon.
                     <Market.Consumer>
                         {state =>
                             state.totalAssets > 0 &&

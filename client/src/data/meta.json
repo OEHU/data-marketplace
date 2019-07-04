@@ -1,31 +1,27 @@
 {
-  "title": "Commons",
-  "description": "A marketplace to find and publish open data sets in the Ocean Network.",
+  "title": "OEHU Marketplace",
+  "description": "A marketplace to find and publish OEHU data sets in the Ocean Network.",
   "company": "Ocean Protocol Foundation Ltd.",
   "social": [
     {
       "title": "Site",
-      "url": "https://oceanprotocol.com"
-    },
-    {
-      "title": "Blog",
-      "url": "https://blog.oceanprotocol.com"
+      "url": "https://oehu.org/"
     },
     {
       "title": "Twitter",
-      "url": "https://twitter.com/oceanprotocol"
+      "url": "https://twitter.com/oehu_project"
     },
     {
       "title": "GitHub",
-      "url": "https://github.com/oceanprotocol"
+      "url": "https://github.com/OEHU/"
     },
     {
-      "title": "Gitter",
-      "url": "https://gitter.im/oceanprotocol/Lobby"
+      "title": "LinkedIn",
+      "url": "https://www.linkedin.com/company/oehu/"
     },
     {
       "title": "Telegram",
-      "url": "https://t.me/OceanProtocol_Community"
+      "url": "https://t.me/joinchat/A8b03hI61nBIbnVF18582A"
     }
   ]
 }

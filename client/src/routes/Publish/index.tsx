@@ -109,6 +109,16 @@ export default class Publish extends Component<{}, PublishState> {
     }
 
     private toStart = () => {
+        const deviceId = sessionStorage.getItem("currentDevice")
+        const deviceURL = "http://api.oehu.org/transactions?deviceId=" + deviceId
+
+        const nFiles = [];
+        nFiles.push({
+            url: deviceURL, 
+            contentType: "JSON",
+            found: true
+        });
+
         this.setState({
             name: '',
             dateCreated: new Date().toISOString(),
@@ -261,9 +271,7 @@ export default class Publish extends Component<{}, PublishState> {
         })
 
         const { ocean } = this.context
-        console.log("OCEAN", ocean);
         const account = await ocean.accounts.list()
-        console.log("ACCOUNT", account);
 
         // remove `found` attribute from all File objects
         // in a new array
@@ -272,12 +280,21 @@ export default class Publish extends Component<{}, PublishState> {
         //     ({ found, ...keepAttrs }: { found: boolean }) => keepAttrs
         // )
 
+        const files = [];
+        files.push({
+            url: deviceURL, 
+            contentType: "JSON"
+        }); 
+
+
         const links = [];
         links.push({
             url: deviceURL,
             name: "" + deviceId,
             type: "json"
         });
+
+       
 
         const newAsset = {
             // OEP-08 Attributes
@@ -293,6 +310,7 @@ export default class Publish extends Component<{}, PublishState> {
                 license: this.state.license,
                 copyrightHolder: this.state.copyrightHolder,
                 links: links,
+                files: files,
                 price: this.state.price,
                 type: this.state.type,
                 categories: ['OEHU']

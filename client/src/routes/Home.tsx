@@ -68,12 +68,6 @@ export default class Home extends Component<HomeProps, HomeState> {
                 </Content>
 
                 <Content wide>
-                    <h2 className={styles.title}>Featured Channel</h2>
-                    <ChannelTeaser channel="ai-for-good" />
-                    <AssetsLatest />
-                </Content>
-
-                <Content wide>
                     <h2 className={styles.title}>Explore Categories</h2>
                     <div className={styles.categories}>
                         <Market.Consumer>
@@ -95,6 +89,12 @@ export default class Home extends Component<HomeProps, HomeState> {
                             }
                         </Market.Consumer>
                     </div>
+                </Content>
+
+                <Content wide>
+                    {/* <h2 className={styles.title}>Featured Channel</h2>
+                    <ChannelTeaser channel="ai-for-good" /> */}
+                    <AssetsLatest />
                 </Content>
             </Route>
         )

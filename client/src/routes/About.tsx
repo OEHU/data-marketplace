@@ -8,11 +8,12 @@ class About extends Component {
         return (
             <Route
                 title="About"
-                description="A marketplace to find and publish open data sets in the Ocean Network."
+                description="A marketplace to find and publish OEHU data sets in the Ocean Network. Built
+                by the BlockLab intern team using Commons as a template."
             >
                 <Content>
                     <p>
-                        Commons is built on top of the Ocean{' '}
+                        OEHU Data Marketplace is built on top of the Ocean{' '}
                         <a href="https://docs.oceanprotocol.com/concepts/testnets/#the-nile-testnet">
                             Nile test network
                         </a>{' '}
@@ -23,14 +24,14 @@ class About extends Component {
                     </p>
 
                     <ul>
-                        <li>
+                        {/* <li>
                             <a href="https://blog.oceanprotocol.com/the-commons-marketplace-c57a44288314">
                                 Read the blog post →
                             </a>
-                        </li>
+                        </li> */}
                         <li>
-                            <a href="https://github.com/oceanprotocol/commons">
-                                Check out oceanprotocol/commons on GitHub →
+                            <a href="https://github.com/OEHU/data-marketplace">
+                                Check out OEHU/data-marketplace on GitHub →
                             </a>
                         </li>
                     </ul>
